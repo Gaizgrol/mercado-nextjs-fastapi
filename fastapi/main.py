@@ -2,6 +2,6 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-async def root():
+@app.get("/healthcheck")
+async def healthcheck():
     return {"healthy": True}

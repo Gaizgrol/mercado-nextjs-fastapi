@@ -87,7 +87,7 @@ Os dados das tabelas estão dentro de `postgres/data`. Caso queira limpar o banc
 
 - Garanta que você tem estas portas de rede disponíveis antes de executar o projeto
   - `4000`: Servidor de desenvolvimento do NextJS
-  - `8000`: API
+  - `8000`: Servidor da FastAPI
   - `8080`: Adminer
 - Garanta que o serviço do Docker está rodando!
 - Garanta que você está usando uma versão recente do Docker que tenha suporte ao [**plugin de linha de comando oficial do Docker Compose V2**](https://docs.docker.com/compose/install/). **Este projeto não usa o antigo `docker-compose`**. Este formato não será mais suportado a partir do final de Junho de 2023, de acordo com a documentação.

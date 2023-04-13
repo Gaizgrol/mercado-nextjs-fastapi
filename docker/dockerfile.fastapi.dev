@@ -2,7 +2,8 @@ FROM python:3.11.2-alpine
 
 WORKDIR /usr/src/app
 COPY fastapi .
+COPY docker/entrypoint.fastapi.sh /bin/entrypoint.sh
 
-RUN pip install "fastapi[all]"
+RUN pip install "fastapi[all]" aiohttp
 
-
+ENTRYPOINT [ "/bin/entrypoint.sh" ]
