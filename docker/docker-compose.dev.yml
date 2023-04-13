@@ -1,8 +1,9 @@
 name: market-react-python
 services:
   front-nextjs:
+    container_name: front-nextjs
     # depends_on:
-    #   api:
+    #   api-fastapi:
     #     condition: service_healthy
     build:
       context: ../
@@ -17,6 +18,10 @@ services:
       - outer-network
 
   api-fastapi:
+    container_name: api-fastapi
+    depends_on:
+      db-postgresql:
+        condition: service_healthy
     # healthcheck:
     #   test: ["CMD", "python", "healthcheck.py"]
     #   interval: 5s
@@ -34,7 +39,11 @@ services:
       - inner-network
 
   dbm-adminer:
+    container_name: dbm-adminer
     image: adminer:4.8.1
+    depends_on:
+      db-postgresql:
+        condition: service_healthy
     restart: always
     ports:
       - 8080:8080
@@ -43,10 +52,11 @@ services:
       - inner-network
   
   db-postgresql:
+    container_name: db-postgresql
     image: postgres:15.2-alpine
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
+      interval: 3s
       timeout: 5s
       retries: 5
     restart: always
