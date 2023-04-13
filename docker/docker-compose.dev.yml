@@ -1,0 +1,66 @@
+name: market-react-python
+services:
+  front-nextjs:
+    # depends_on:
+    #   api:
+    #     condition: service_healthy
+    build:
+      context: ../
+      dockerfile: docker/dockerfile.nextjs.dev
+    ports:
+      - "4000:4000"
+    volumes:
+      - ../react:/app
+    working_dir: /app
+    entrypoint: ["tail", "-f", "/dev/null"] #["npx", "next", "dev", "-H", "0.0.0.0", "-p", "4000"]
+    networks:
+      - outer-network
+
+  api-fastapi:
+    # healthcheck:
+    #   test: ["CMD", "python", "healthcheck.py"]
+    #   interval: 5s
+    #   retries: 30
+    build:
+      context: ../
+      dockerfile: docker/dockerfile.fastapi.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../fastapi:/usr/src/app
+    entrypoint: ["tail", "-f", "/dev/null"] 
+    networks:
+      - outer-network
+      - inner-network
+
+  dbm-adminer:
+    image: adminer:4.8.1
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - outer-network
+      - inner-network
+  
+  db-postgresql:
+    image: postgres:15.2-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=database
+    # ports:
+    #   - 5432:5432
+    volumes:
+      - ../postgres/data:/var/lib/postgresql/data
+    networks:
+      - inner-network
+
+networks:
+  outer-network:
+  inner-network:
