@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 COPY fastapi .
 COPY docker/entrypoint.fastapi.sh /bin/entrypoint.sh
 
-RUN pip install "fastapi[all]" aiohttp
+RUN pip install "fastapi[all]" sqlalchemy psycopg2-binary aiohttp
 
 ENTRYPOINT [ "/bin/entrypoint.sh" ]

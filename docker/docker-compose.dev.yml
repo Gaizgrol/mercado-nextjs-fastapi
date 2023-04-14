@@ -32,6 +32,13 @@ services:
       dockerfile: docker/dockerfile.fastapi.dev
     ports:
       - "8000:8000"
+    environment:
+      - DB_PROTOCOL=postgresql
+      - DB_HOST=db-postgresql
+      - DB_PORT=5432
+      - DB_USER=user
+      - DB_PASS=pass
+      - DB_NAME=database
     volumes:
       - ../fastapi:/usr/src/app
     networks:
