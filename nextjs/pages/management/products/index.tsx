@@ -4,7 +4,7 @@ import ManagementLayout from "@/layouts/ManagementLayout";
 import CategoryService from "@/services/CategoryService";
 import ProductService from "@/services/ProductService";
 import { Category, Product } from "@/util/types";
-import { Fab } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ReactElement, useEffect, useState } from "react";
 
@@ -45,6 +45,9 @@ export default function ProductsPage({
 
   return (
     <>
+      <Typography variant="h2" sx={{ fontSize: "24px", mb: "16px" }}>
+        Produtos
+      </Typography>
       <div className="flex-row wrap gap-16">
         {products.map((product: Product) => (
           <ProductCard

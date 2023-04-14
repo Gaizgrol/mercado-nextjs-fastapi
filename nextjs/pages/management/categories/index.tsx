@@ -3,7 +3,7 @@ import CategoryFormDialog from "@/components/CategoryFormDialog";
 import ManagementLayout from "@/layouts/ManagementLayout";
 import CategoryService from "@/services/CategoryService";
 import { Category } from "@/util/types";
-import { Fab } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ReactElement, useState } from "react";
 
@@ -46,6 +46,9 @@ export default function CategoriesPage({
 
   return (
     <>
+      <Typography variant="h2" sx={{ fontSize: "24px", mb: "16px" }}>
+        Categorias
+      </Typography>
       <div className="flex-row wrap gap-16">
         {categories.map((category: Category) => (
           <CategoryCard
