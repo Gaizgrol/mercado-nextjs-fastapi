@@ -11,9 +11,8 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - ../react:/app
+      - ../nextjs:/app
     working_dir: /app
-    entrypoint: ["tail", "-f", "/dev/null"]
     networks:
       - outer-network
 

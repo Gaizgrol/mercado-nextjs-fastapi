@@ -3,3 +3,6 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY nextjs .
+COPY docker/entrypoint.nextjs.sh /bin/entrypoint.sh
+
+ENTRYPOINT [ "/bin/entrypoint.sh" ]
