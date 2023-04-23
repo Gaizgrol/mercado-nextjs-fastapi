@@ -73,7 +73,7 @@ Caso queira usar ferramentas externas (DBeaver por exemplo), descomente a seçã
 
 ## 📚 Documentação de API
 
-Você pode entrar em `http://localhost:8080/docs` para acessar toda a documentação da API.
+Você pode entrar em `http://localhost:8000/docs` para acessar toda a documentação da API.
 
 ## 🧪 Testes unitários/funcionais
 
